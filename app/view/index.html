@@ -4,9 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="/public/http.js"></script>
     <title><%-title%></title>
   </head>
   <body>
-    hello
+    <div id="app">hello <%-user.name%> your age is <%-user.age%></div>
+    <div><button onclick="get()">submit</button></div>
+    <div id="http"></div>
   </body>
-</html> 
+  <script>
+    async function get() {
+      var user = await http.get('/api/getUser/12');
+      document.querySelector('#http').innerText = JSON.stringify(user);
+    }
+  </script>
+</html>
